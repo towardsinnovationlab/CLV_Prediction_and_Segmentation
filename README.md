@@ -1,1 +1,1 @@
-# CuCLV_Prediction_and_Segmentation
+# CLV_Prediction_and_Segmentation
