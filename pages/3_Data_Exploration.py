@@ -98,8 +98,7 @@ X_full = df_new.copy()
 y = X_full.Customer_Lifetime_Value
 X_full.drop(['Customer_Lifetime_Value'], axis=1, inplace=True)
 
-st.subheader("Target Variable Analysis")
-
+# Functions
 # Vis Chart
 def plot_target(data, var):
     plt.rcParams['figure.figsize']=(10,5)
@@ -128,35 +127,6 @@ def plot_target(data, var):
     
     st.pyplot(fig)
 
-plot_target(df_new, var='Customer_Lifetime_Value')
-
-
-plt.rcParams['figure.figsize']=(10,5)
-fig=plt.figure()
-plot_acf(df_new['Customer_Lifetime_Value'], lags=np.arange(len(df_new)))
-plt.title('Autocorrelation Function Plot on CLV', fontsize=15)
-plt.xlabel('Time', fontsize=15)
-plt.ylabel('Value',fontsize=15)
-plt.yticks(rotation=0, fontsize=15)
-plt.xticks(rotation=45, fontsize=15)
-st.pyplot(fig)
-
-
-st.subheader("Numerical Features Analysis")
-
-# Select numerical columns
-numerical_cols = [cname for cname in X_full.columns if 
-                X_full[cname].dtype in ['float64','int64']]
-
-# Subset with numerical features
-num = X_full[numerical_cols]
-
-# list of numerical features
-fnum = ['Income', 'Monthly_Premium_Auto', 'Months_Since_Last_Claim',
-       'Months_Since_Policy_Inception', 'Number_of_Open_Complaints',
-       'Number_of_Policies', 'Total_Claim_Amount', 'eoy_missing_days']
-
-
 # Vis Chart
 def plot_num(data, var):
     plt.rcParams['figure.figsize']=(15,5)
@@ -184,6 +154,27 @@ def plot_num(data, var):
     plt.xticks(rotation=45, fontsize=15)
     
     st.pyplot(fig)
+
+
+st.subheader("Target Variable Analysis")
+
+plot_target(df_new, var='Customer_Lifetime_Value')
+
+st.subheader("Numerical Features Analysis")
+
+# Select numerical columns
+numerical_cols = [cname for cname in X_full.columns if 
+                X_full[cname].dtype in ['float64','int64']]
+
+# Subset with numerical features
+num = X_full[numerical_cols]
+
+# list of numerical features
+fnum = ['Income', 'Monthly_Premium_Auto', 'Months_Since_Last_Claim',
+       'Months_Since_Policy_Inception', 'Number_of_Open_Complaints',
+       'Number_of_Policies', 'Total_Claim_Amount', 'eoy_missing_days']
+
+
 
 plot_num(num, var='Income')
 plot_num(num, var='Monthly_Premium_Auto')
