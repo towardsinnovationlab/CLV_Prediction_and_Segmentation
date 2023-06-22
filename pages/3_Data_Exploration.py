@@ -49,7 +49,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-df = pd.read_csv('AutoInsurance.csv')
+df = pd.read_csv('./data/AutoInsurance.csv')
 
 if st.checkbox('Show original data'):
     st.write(df)
